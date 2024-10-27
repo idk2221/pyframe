@@ -98,7 +98,7 @@ def functionsFetcher():
         functionslist = [f.name for f in lexed if f.type == 'function'] 
         return functionslist
     except Exception as e:
-        raise Exception("missing permissions, or unexsistance of backend.py")
+        raise Exception(f"missing permissions, or unexsistance of backend.py. {e}")
 
 
 async def websocketsCreator(functionslist, sessionid):
