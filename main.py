@@ -13,6 +13,15 @@ def fetchsrc_files():
              if routename == "index":  #index to /
                  routename = "/"
              routes.append(routename)
-    print(routes)
+    return routes
+
+def routegenerator(routes):
+    # todo() [route setup upon routes names.]
+    for i in routes:
+        routename = i
+        @app.get(routename)
+        def page_{routename}():
+            return {"indexed."}
+        #setup route
 
 print(fetchsrc_files())
