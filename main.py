@@ -71,7 +71,7 @@ def securer():
         print(everything)
         for i in mainfunctions:
             if i in everything:
-                    raise Exception(f"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Calling of illegal main functions. \n Please refrain from using one of these in your backend.py file. {mainfunctions}")
+                    raise Exception(f"Calling of illegal main functions. \n Please refrain from using one of these in your backend.py file. {mainfunctions}")
             else:
                 print(f"passed {i}")
 def functionsFetcher():
