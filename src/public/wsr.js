@@ -16,7 +16,6 @@ const fingerprint = async () => {
         navigator.platform,
         navigator.vendor
     ]
-    // audio fingerprinting
     let data = "audio didnt workout."
     extras.push(data)
     
@@ -36,36 +35,24 @@ const fingerprint = async () => {
         return Math.abs(hash).toString(16)
     }
 }
-//thanks gpt<3
+
 const connectws = async (functionName) => {
     const fp = await fingerprint()
-    try {
-        const response = await fetch(`http://localhost:8000/reciever/${fp}`)
-        const data = await response.json()
-        
-        if (data.status === "websockets created") {
-            const ws = new WebSocket(`ws://localhost:8000/ws/${fp}/functions/${functionName}`)
-            
-            ws.onopen = () => {
-                console.log('Connected to websocket')
-            }
-            
-            ws.onmessage = (event) => {
-                console.log('Received:', event.data)
-            }
-            
-            ws.onerror = (error) => {
-                console.error('WebSocket error:', error)
-            }
-            
-            return ws
-        } else {
-            throw new Error('Failed to set up WebSocket endpoints')
-        }
-    } catch (error) {
-        console.error('Error setting up connection:', error)
-        throw error
+    const ws = new WebSocket(`ws://localhost:8000/ws/${fp}/functions/${functionName}`)
+    
+    ws.onopen = () => {
+        ws.send('init')
     }
+    
+    ws.onmessage = (event) => {
+        console.log('Received:', event.data)
+    }
+    
+    ws.onerror = (error) => {
+        console.error('WebSocket error:', error)
+    }
+    
+    return ws
 }
 
 // Remove the automatic connection
