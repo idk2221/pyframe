@@ -16,6 +16,7 @@ const fingerprint = async () => {
         navigator.platform,
         navigator.vendor
     ]
+    // audio fingerprinting
     let data = "audio didnt workout."
     extras.push(data)
     
@@ -35,24 +36,40 @@ const fingerprint = async () => {
         return Math.abs(hash).toString(16)
     }
 }
-
+//thanks gpt<3
 const connectws = async (functionName) => {
     const fp = await fingerprint()
-    const ws = new WebSocket(`ws://localhost:8000/ws/${fp}/functions/${functionName}`)
-    
-    ws.onopen = () => {
-        ws.send('init')
+    try {
+        const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+        const httpProtocol = window.location.protocol === 'https:' ? 'https:' : 'http:'
+        const hostname = window.location.hostname === 'localhost' ? 'localhost:8000' : window.location.host
+
+        const response = await fetch(`${httpProtocol}//${hostname}/reciever/${fp}`)
+        const data = await response.json()
+        
+        if (data.status === "websockets created") {
+            const ws = new WebSocket(`${wsProtocol}//${hostname}/ws/${fp}/functions/${functionName}`)
+            
+            ws.onopen = () => {
+                console.log('Connected to websocket')
+            }
+            
+            ws.onmessage = (event) => {
+                console.log('Received:', event.data)
+            }
+            
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error)
+            }
+            
+            return ws
+        } else {
+            throw new Error('Failed to set up WebSocket endpoints')
+        }
+    } catch (error) {
+        console.error('Error setting up connection:', error)
+        throw error
     }
-    
-    ws.onmessage = (event) => {
-        console.log('Received:', event.data)
-    }
-    
-    ws.onerror = (error) => {
-        console.error('WebSocket error:', error)
-    }
-    
-    return ws
 }
 
 // Remove the automatic connection
