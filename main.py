@@ -20,6 +20,7 @@ def routegenerator(routes):
     # todo() [route setup upon routes names.]
     for i in routes:
         routename = i
+        print(routename)
         pagefuncname = "page_" + routename
         @app.get(routename)
         def pagefuncname():
