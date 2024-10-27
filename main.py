@@ -66,8 +66,10 @@ todo[]
 """
 def securer(): 
     mainfunctions = ['functionsFetcher', 'starter', 'cdnHoster', 'cdner', 'routegenerator', 'fetchsrc_files']
-    with open("backend.py"):
-        if mainfunctions in backend.py:
+    with open("backend.py") as f:
+        everything = f.readlines()
+
+        if mainfunctions in everything:
             raise Exception(f"Calling of illegal main functions. \n Please refrain from using one of these in your backend.py file. {mainfunctions}")
 def functionsFetcher():
     # todo? a lexer? i think is the best way.
