@@ -11,5 +11,6 @@ def fetchsrc_files():
         if i.endswith(".html"):
              routename = i.replace(".html", "")
              routes.append(routename)
+    print(routes)
 
 print(fetchsrc_files())
