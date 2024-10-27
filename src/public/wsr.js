@@ -21,20 +21,17 @@ const fingerprint = async () => {
     extras.push(data)
     
     const str = extras.join('§')
-    
-    // Check if we're in a secure context and crypto.subtle is available
     if (window.isSecureContext && crypto.subtle) {
         const buffr = await crypto.subtle.digest('SHA-512', new TextEncoder().encode(str))
         const array = Array.from(new Uint8Array(buffr))
         const hex = array.map(b => b.toString(16).padStart(2,'0')).join('')
         return hex
     } else {
-        // Fallback to a simple hash function for non-secure contexts
         let hash = 0
         for (let i = 0; i < str.length; i++) {
             const char = str.charCodeAt(i)
             hash = ((hash << 5) - hash) + char
-            hash = hash & hash // Convert to 32-bit integer
+            hash = hash & hash 
         }
         return Math.abs(hash).toString(16)
     }
