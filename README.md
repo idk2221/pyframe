@@ -1,5 +1,2 @@
 # pyframe
-# pyframe
-# pyframe
-# pyframe
-# pyframe
+# state and dom manager and frontend in python. 
