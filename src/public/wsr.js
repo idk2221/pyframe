@@ -18,7 +18,7 @@ const fingerprint = async () => {
     ]
     // audio fingerprinting
     let data = "audio didnt workout."
-    extras.push(data.slice(0,5).join(''))
+    extras.push(data)
     
     const str = extras.join('§')
     const buffr = await crypto.subtle.digest('SHA-512', new TextEncoder().encode(str))
