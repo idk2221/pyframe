@@ -87,7 +87,10 @@ def functionsFetcher():
         return functionslist
     except Exception as e:
         raise Exception(f"missing permissions, or unexsistance of backend.py. {e}")
-
+@app.websocket("/ws/test")
+async def test(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text("test")
 
 async def websocketsCreator(functionslist, sessionid):
     for funcname in functionslist:
