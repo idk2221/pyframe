@@ -28,7 +28,7 @@ def routegenerator(routes):
 
 def starter():
     routes = fetchsrc_files()
-    print(f"indexed {routes} routes.")
+    print(f"indexed {routes} routes. routes read are {app.routes}")
     routegenerator(routes)
     print("generated routes..")
     uvicorn.run(app, host="0.0.0.0", port=8000)
