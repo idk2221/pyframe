@@ -69,7 +69,8 @@ def securer():
     with open("backend.py") as f:
         everything = f.readlines()
         print(everything)
-        if mainfunctions in everything:
+        for i in mainfunctions:
+            if i in everything:
             raise Exception(f"Calling of illegal main functions. \n Please refrain from using one of these in your backend.py file. {mainfunctions}")
 def functionsFetcher():
     # todo? a lexer? i think is the best way.
