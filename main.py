@@ -90,13 +90,14 @@ def securer():
                 print(f"passed {i}")
 def functionsFetcher():
     # todo? a lexer? i think is the best way.
-    with open("backend.py") as f:
-        everything = f.read()
+    try: 
+        with open("backend.py") as f:
+            everything = f.read()
         lexed = jedi.Script(everything).get_names(all_scopes=True, definitions=True)
         #lexed -> [<Name full_name='__main__.logger', description='def logger'>, <Name full_name='__main__.logger.loglist', description='loglist = []'>]
         functionslist = [f.name for f in lexed if f.type == 'function'] 
         return functionslist
-    else:
+    except Exception as e:
         raise Exception("missing permissions, or unexsistance of backend.py")
 
 
