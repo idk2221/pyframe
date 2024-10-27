@@ -1,6 +1,7 @@
 import fastapi
 import os
 import uvicorn
+from starlette.responses import FileResponse 
 
 app = fastapi.FastAPI()
 def fetchsrc_files():
@@ -26,7 +27,7 @@ def routegenerator(routes):
         pagefuncname = "page_" + routename
         @app.get(routename)
         def pagefuncname(iden=routename):
-          return fileresponse(f"src/{iden}.html")
+          return FileResponse(f"src/{iden}.html")
 
 def starter():
     routes = fetchsrc_files()
