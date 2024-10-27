@@ -13,6 +13,7 @@
             backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: fader 0.6s ease-out;
         }
         .container:hover {
             transform: translateY(-3px);
@@ -21,17 +22,33 @@
         }
         .pyframe {
             filter: contrast(5);
+            animation: float 3s ease-in-out infinite;
         }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes fader {
+            from { 
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
       </style>
 </html>
 <body class="justify-center items-center flex min-h-screen">
 
-    <div class="container w-[24rem] h-[10rem] justify-center items-center flex flex-col p-6">
+    <div class="container w-[34rem] h-[20rem] justify-center items-center flex flex-col p-6">
         <div class="pyframe">
             <img src="./public/logo.png" alt="logo" class="w-[2.8rem] h-[2.8rem]">
         </div>
-        <div class="mt-4 text-white text-lg font-medium tracking-wide">
-            Your Server is up and running.
+        <div class="mt-4 text-white text-lg font-medium tracking-wide flex items-center">
+            Your Server is up and running
         </div>
         <div class="mt-2 text-gray-400 text-sm text-center max-w-[90%]">
             Edit HTML files in /src directory • Add assets to /public for CDN • 
