@@ -1,4 +1,4 @@
-def showlogs():
+def starter():
     loglist = [] 
     loglist.append("$- Welcome, This is just comming from python.")
     loglist.append("$- Yeah, this framework is about jst bridging python with web.")
