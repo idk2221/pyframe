@@ -5,4 +5,4 @@ async def wait():
     recvv = await ws.recv()
     return recvv
 
-print(wait())
+await print(wait())
