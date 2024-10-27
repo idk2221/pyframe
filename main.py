@@ -85,4 +85,8 @@ def functionsFetcher():
         #lexed -> [<Name full_name='__main__.logger', description='def logger'>, <Name full_name='__main__.logger.loglist', description='loglist = []'>]
         functionslist = [f.name for f in lexed if f.type == 'function'] 
         return functionslist
+    else:
+        raise Exception("missing permissions, or unexsistance of backend.py")
+
+
 starter()
