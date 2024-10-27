@@ -9,7 +9,9 @@ def fetchsrc_files():
     routes = []
     for i in fileslist:
         if i.endswith(".html"):
-             routename = i.replace(".html", "")
+             routename = i.replace(".html", "") # routename - extention.
+             if routename == "index":  #index to /
+                 routename = "/"
              routes.append(routename)
     print(routes)
 
