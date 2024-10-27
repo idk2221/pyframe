@@ -39,18 +39,36 @@ const fingerprint = async () => {
 //thanks gpt<3
 const connectws = async (functionName) => {
     const fp = await fingerprint()
-    const ws = new WebSocket(`ws://localhost:8000/ws/${fp}/functions/${functionName}`)
-    ws.onopen = () => {
-        console.log('Connected to websocket')
-    }
-    ws.onmessage = (event) => {
-        console.log('Received:', event.data)
-    }
-    ws.onerror = (error) => {
-        console.error('WebSocket error:', error)
-    }
     
-    return ws
+    // First, call the receiver endpoint to set up WebSocket endpoints
+    try {
+        const response = await fetch(`http://localhost:8000/receiver/${fp}`)
+        const data = await response.json()
+        
+        if (data.status === "websockets created") {
+            // Now that endpoints are set up, connect to WebSocket
+            const ws = new WebSocket(`ws://localhost:8000/ws/${fp}/functions/${functionName}`)
+            
+            ws.onopen = () => {
+                console.log('Connected to websocket')
+            }
+            
+            ws.onmessage = (event) => {
+                console.log('Received:', event.data)
+            }
+            
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error)
+            }
+            
+            return ws
+        } else {
+            throw new Error('Failed to set up WebSocket endpoints')
+        }
+    } catch (error) {
+        console.error('Error setting up connection:', error)
+        throw error
+    }
 }
 
 // Remove the automatic connection
