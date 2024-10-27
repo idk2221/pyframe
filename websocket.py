@@ -5,4 +5,5 @@ def wait():
 
     recvv = await ws.recv()
     return recvv
-print(recvv)
+
+print(wait())
