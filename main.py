@@ -65,13 +65,13 @@ todo[]
  - call the function, get the response, and send it to the client with the sessionid and expectedresponse_address.
 """
 def securer(): 
-    mainfunctions = ['functionsFetcher', 'starter', 'cdnHoster', 'cdner', 'routegenerator', 'fetchsrc_files']
+    mainfunctions = ['functionsFetcher(', 'starter(', 'cdnHoster(', 'cdner(', 'routegenerator(', 'fetchsrc_files(']
     with open("backend.py") as f:
         everything = f.read()
         print(everything)
         for i in mainfunctions:
             if i in everything:
-                    raise Exception(f"Calling of illegal main functions. \n Please refrain from using one of these in your backend.py file. {mainfunctions}")
+                    raise Exception(f"Calling of illegal main functions. \n Please refrain from using one of these functions in your backend.py file. {mainfunctions}")
             else:
                 print(f"passed {i}")
 def functionsFetcher():
