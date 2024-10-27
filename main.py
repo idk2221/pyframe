@@ -120,7 +120,7 @@ async def reciever(sessionid: str):
 def websocketprinter():
     rx = [r for r in app.routes if r.endpoint.__name__.startswith("websocket_")]
     print("websocket routes:")
-    for rx in r:
+    for r in rx:
         print(f"{r.path}")
 def starter():
     routes = fetchsrc_files()
