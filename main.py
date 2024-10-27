@@ -4,6 +4,8 @@ import uvicorn
 from starlette.responses import FileResponse 
 from fastapi.staticfiles import StaticFiles
 from backend import *
+import jedi
+
 app = fastapi.FastAPI()
 def fetchsrc_files():
     # todo(): [fetch the file names from the src dir ]
