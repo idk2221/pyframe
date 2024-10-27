@@ -1,4 +1,3 @@
-
 const fingerprint = async () => {
     const canvas = document.createElement('canvas')
     const gl = canvas.getContext('webgl')
@@ -34,9 +33,9 @@ const fingerprint = async () => {
     return hex
 }
 
-const connectws = async () => {
+const connectws = async (functionName) => {
     const fp = await fingerprint()
-    const ws = new WebSocket(`ws://localhost:8000/ws/${fp}/functions/logger`)
+    const ws = new WebSocket(`ws://localhost:8000/ws/${fp}/functions/${functionName}`)
     
     ws.onopen = () => {
         console.log('Connected to websocket')
@@ -53,4 +52,5 @@ const connectws = async () => {
     return ws
 }
 
-connectws()
+// Remove the automatic connection
+// connectws()
