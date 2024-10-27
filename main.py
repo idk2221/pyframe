@@ -24,4 +24,8 @@ def routegenerator(routes):
         def pagefuncname():
             return {"indexed."}
 
-print(fetchsrc_files())
+
+
+# runner
+routes = fetchsrc_files()
+routegenerator(routes)
