@@ -3,7 +3,7 @@ import websockets
 
 async def wss():
     try:
-        async with websockets.connect("ws://localhost:8000/ws/test") as ws:
+        async with websockets.connect("ws://localhost:8000/ws/3/functions/logger") as ws:
             recvv = await ws.recv()
             print(f"{recvv}")
     except websockets.exceptions.ConnectionClosed:
