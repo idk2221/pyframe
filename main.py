@@ -117,7 +117,7 @@ async def reciever(sessionid: str):
     functionslist = functionsFetcher()
     websocketsCreator(functionslist, sessionid)
     return {"status": "websockets created", "functions": functionslist}
-def websocketprinter(app: app):
+def websocketprinter():
     rx = [r for r in app.routes if r.endpoint.__name__.startswith("websocket_")]
     print("websocket routes:")
     for rx in r:
