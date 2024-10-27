@@ -124,7 +124,7 @@ async def websocketsCreator(functionslist, sessionid):
 @app.get("/reciever/{sessionid}")
 async def reciever(sessionid: str):
     functionslist = functionsFetcher()
-    await websocketsCreator(functionslist, sessionid)
+    websocketsCreator(functionslist, sessionid)
     return {"status": "websockets created", "functions": functionslist}
 
 starter()
