@@ -109,16 +109,22 @@ async def websocketsCreator(functionslist, sessionid):
             while True:
                 try:
                     data = await websocket.receive_text()
-                    response = globals()[funcname]()
-                    await websocket.send_text(str(response))
+                    if funcname in globals():
+                        response = globals()[funcname]()
+                        await websocket.send_text(str(response))
+                    else:
+                        await websocket.send_text(f"failure function is not found... {funcname}")
+                        await websocket.close()
+                        break
                 except Exception as e:
-                    await websocket.send_text(str(e))
+                    await websocket.send_text(f"{str(e)}")
                     await websocket.close()
                     break
 
 @app.get("/reciever/{sessionid}")
 async def reciever(sessionid: str):
-    await websocketsCreator(functionsFetcher(), sessionid)
-    return {"status": "websockets created"}
+    functionslist = functionsFetcher()
+    await websocketsCreator(functionslist, sessionid)
+    return {"status": "websockets created", "functions": functionslist}
 
 starter()
