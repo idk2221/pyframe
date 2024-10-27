@@ -30,12 +30,27 @@ def routegenerator(routes):
         def pagefuncname(iden=routename):
           return FileResponse(f"src/{iden}.html")
 
+def cdner():
+    fileslist = os.listdir("src/public")
+    routes = []
+    for i in fileslist:
+        routes.append(i)
+    return routes
+
+def cdnHoster(routes):
+    for i in routes:
+        @app.get(f"/public/{i}")
+        def cdnfunc(iden=i):
+            return FileResponse(f"src/public/{iden}")
+
 def starter():
     routes = fetchsrc_files()
     routegenerator(routes)
     print("generated routes..")
     print(f"indexed {routes} routes. routes read are {app.routes}")
-    app.mount("/src/public", StaticFiles(directory="public",html = True), name="public")
+    print("hosting cdn...")
+    cdnroutes = cdner()
+    cdnHoster(cdnroutes)
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
