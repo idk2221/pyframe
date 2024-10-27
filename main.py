@@ -8,7 +8,7 @@ def fetchsrc_files():
     fileslist = os.listdir("src")
     routes = []
     for i in fileslist:
-        if i.endWith(".html")
+        if i.endWith(".html"):
              routename = i.replace(".html", "")
              routes.append(routename)
 
