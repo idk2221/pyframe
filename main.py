@@ -51,6 +51,7 @@ def starter():
     print("hosting cdn...")
     cdnroutes = cdner()
     cdnHoster(cdnroutes)
+    securer()
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
@@ -63,7 +64,11 @@ todo[]
  - create a websocket with each function name /ws/{sessionid}/functions/{funcname}/{expectedresponse_address}
  - call the function, get the response, and send it to the client with the sessionid and expectedresponse_address.
 """
-
+def securer(): 
+    mainfunctions = ['functionsFetcher', 'starter', 'cdnHoster', 'cdner', 'routegenerator', 'fetchsrc_files']
+    with open("backend.py"):
+        if mainfunctions in backend.py:
+            raise Exception(f"Calling of illegal main functions. \n Please refrain from using one of these in your backend.py file. {mainfunctions}")
 def functionsFetcher():
     # todo? a lexer? i think is the best way.
     mainfunctions = ['functionsFetcher', 'starter', 'cdnHoster', 'cdner', 'routegenerator', 'fetchsrc_files']
