@@ -87,7 +87,7 @@ def functionsFetcher():
         return functionslist
     except Exception as e:
         raise Exception(f"missing permissions, or unexsistance of backend.py. {e}")
-@app.websocket("/ws/test")
+@app.websocket("/ws/")
 async def test(websocket: WebSocket):
     await websocket.accept()
     await websocket.send_text("test")
@@ -123,9 +123,12 @@ def starter():
     print("generated routes..")
     print(f"indexed {routes} routes. routes read are {app.routes}")
     print("hosting cdn...")
+
     cdnroutes = cdner()
     cdnHoster(cdnroutes)
     securer()
+    print(app.websockets)
+
     functionsFetcher()
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
