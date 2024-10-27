@@ -8,10 +8,11 @@
         }
         .container {
             background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
+            border-radius: 20px 20px 0 0;  /* Removed bottom radius */
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: none;  /* Remove bottom border */
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             animation: fader 0.6s ease-out;
         }
@@ -20,13 +21,46 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             background: rgba(255, 255, 255, 0.05);
         }
+        .livterminal {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 0 0 20px 20px;
+            animation: extend 0.8s ease-out;
+            transform-origin: top;
+        }
+        .scrllwheel {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.2) rgba(0, 0, 0, 0.1);
+        }
+        .scrllwheel::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scrllwheel::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+        .scrllwheel::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        .scrllwheel::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
         .pyframe {
             filter: contrast(3);
             animation: float 3s ease-in-out infinite;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        @keyframes extend {
+            from { 
+                opacity: 0;
+                transform: scaleY(0);
+            }
+            to { 
+                opacity: 1;
+                transform: scaleY(1);
+            }
         }
         @keyframes fader {
             from { 
@@ -42,20 +76,28 @@
       </style>
 </html>
 <body class="justify-center items-center flex min-h-screen">
+    <div class="flex flex-col items-center">
+        <div class="container w-[32rem] h-[20rem] justify-center items-center flex flex-col p-8">
+            <div class="pyframe">
+                <img src="./public/logo.png" alt="logo" class="w-[4rem] h-[4rem]">
+            </div>
+            <div class="mt-6 text-white text-2xl font-medium tracking-wide flex items-center">
+                Your Server is up and running
+            </div>
+            <div class="mt-4 text-gray-400 text-lg text-center max-w-[90%] leading-relaxed">
+                • Edit HTML files in /src directory <br>
+                • Edit Backend files in ./backend.py file <br>
+                • Add assets to /public for CDN <br>• 
+                Live reload enabled
+            </div>
+        </div>
+        
+        <div class="livterminal w-[32rem] p-4">
+            <div class="text-gray-400 text-sm font-mono mb-2">$- Logs here:</div>
+            <div class="scrllwheel h-[4.5rem] overflow-y-auto text-gray-500 text-sm font-mono">
+                $- info<br>
 
-    <div class="container w-[32rem] h-[20rem] justify-center items-center flex flex-col p-8">
-        <div class="pyframe">
-            <img src="./public/logo.png" alt="logo" class="w-[4rem] h-[4rem]">
-        </div>
-        <div class="mt-6 text-white text-2xl font-medium tracking-wide flex items-center">
-            Your Server is up and running
-        </div>
-        <div class="mt-4 text-gray-400 text-lg text-center max-w-[90%] leading-relaxed">
-            • Edit HTML files in /src directory <br>
-            • Edit Backend files in ./backend.py file <br>
-            • Add assets to /public for CDN <br>• 
-            Live reload enabled
+            </div>
         </div>
     </div>
-
 </body>
