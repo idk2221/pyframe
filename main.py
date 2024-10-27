@@ -76,5 +76,5 @@ def securer():
                 print(f"passed {i}")
 def functionsFetcher():
     # todo? a lexer? i think is the best way.
-
+    pass
 starter()
