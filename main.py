@@ -2,6 +2,7 @@ import fastapi
 import os
 import uvicorn
 from starlette.responses import FileResponse 
+from fastapi.staticfiles import StaticFiles
 
 app = fastapi.FastAPI()
 def fetchsrc_files():
