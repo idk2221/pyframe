@@ -36,15 +36,12 @@ const fingerprint = async () => {
 const connectws = async (functionName) => {
     const fp = await fingerprint()
     const ws = new WebSocket(`ws://localhost:8000/ws/${fp}/functions/${functionName}`)
-    
     ws.onopen = () => {
         console.log('Connected to websocket')
     }
-    
     ws.onmessage = (event) => {
         console.log('Received:', event.data)
     }
-    
     ws.onerror = (error) => {
         console.error('WebSocket error:', error)
     }
