@@ -20,8 +20,7 @@ def routegenerator(routes):
     for i in routes:
         routename = i
         @app.get(routename)
-        def page_{routename}():
+        def page+f"{routename}"():
             return {"indexed."}
-        #setup route
 
 print(fetchsrc_files())
