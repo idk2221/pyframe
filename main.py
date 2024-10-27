@@ -19,8 +19,9 @@ def routegenerator(routes):
     # todo() [route setup upon routes names.]
     for i in routes:
         routename = i
+        pagefuncname = "page_" + routename
         @app.get(routename)
-        def pagef"{routename}"():
+        def pagefuncname():
             return {"indexed."}
 
 print(fetchsrc_files())
