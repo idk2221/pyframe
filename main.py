@@ -23,6 +23,7 @@ def routegenerator(routes):
         print(routename)
         pagefuncname = "page_" + routename
         @app.get(routename)
+        def pagefuncname(iden=routename):
             return {"indexed."}
 
 def starter():
