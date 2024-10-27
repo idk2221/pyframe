@@ -101,4 +101,13 @@
             </div>
         </div>
     </div>
+    <script>
+        //showcasing bridge.
+        const logs = document.querySelector(".scrllwheel")
+        connectws("logger").then(ws => {
+            ws.onmessage = (e) => {
+                logs.textContent += e.data + "\n" //hopefully we get a response each time.
+            }
+        })
+    </script>
 </body>
