@@ -42,13 +42,16 @@ const connectws = async (functionName) => {
     try {
         const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
         const httpProtocol = window.location.protocol === 'https:' ? 'https:' : 'http:'
-        const hostname = window.location.hostname === 'localhost' ? 'localhost:8000' : window.location.host
+        const hostname = window.location.hostname
+        const port = ':8000'
+        const baseHost = hostname === '0.0.0.0' || hostname === 'localhost' ? 'localhost' : hostname
+        const fullHost = `${baseHost}${port}`
 
-        const response = await fetch(`${httpProtocol}//${hostname}/reciever/${fp}`)
+        const response = await fetch(`${httpProtocol}//${fullHost}/reciever/${fp}`)
         const data = await response.json()
         
         if (data.status === "websockets created") {
-            const ws = new WebSocket(`${wsProtocol}//${hostname}/ws/${fp}/functions/${functionName}`)
+            const ws = new WebSocket(`${wsProtocol}//${fullHost}/ws/${fp}/functions/${functionName}`)
             
             ws.onopen = () => {
                 console.log('Connected to websocket')
@@ -60,6 +63,12 @@ const connectws = async (functionName) => {
             
             ws.onerror = (error) => {
                 console.error('WebSocket error:', error)
+                console.log('Connection details:', {
+                    url: ws.url,
+                    readyState: ws.readyState,
+                    protocol: wsProtocol,
+                    host: fullHost
+                })
             }
             
             return ws
