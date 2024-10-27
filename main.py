@@ -56,18 +56,6 @@ def cdnHoster(routes):
         def cdnfunc(iden=i):
             return FileResponse(f"src/public/{iden}")
 
-def starter():
-    routes = fetchsrc_files()
-    routegenerator(routes)
-    print("generated routes..")
-    print(f"indexed {routes} routes. routes read are {app.routes}")
-    print("hosting cdn...")
-    cdnroutes = cdner()
-    cdnHoster(cdnroutes)
-    securer()
-    functionsFetcher()
-    uvicorn.run(app, host="0.0.0.0", port=8000)
-
 
 #bridge point
 
@@ -126,5 +114,17 @@ async def reciever(sessionid: str):
     functionslist = functionsFetcher()
     websocketsCreator(functionslist, sessionid)
     return {"status": "websockets created", "functions": functionslist}
+def starter():
+    routes = fetchsrc_files()
+    routegenerator(routes)
+    print("generated routes..")
+    print(f"indexed {routes} routes. routes read are {app.routes}")
+    print("hosting cdn...")
+    cdnroutes = cdner()
+    cdnHoster(cdnroutes)
+    securer()
+    functionsFetcher()
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
 
 starter()
