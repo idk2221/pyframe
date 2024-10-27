@@ -32,7 +32,7 @@ const fingerprint = async () => {
     
     return hex
 }
-
+//thanks gpt<3
 const connectws = async (functionName) => {
     const fp = await fingerprint()
     const ws = new WebSocket(`ws://localhost:8000/ws/${fp}/functions/${functionName}`)
