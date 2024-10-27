@@ -1,5 +1,8 @@
 import websockets
 
 ws = websockets.connect("ws://localhost:8000/ws/test")
-recvv = await ws.recv()
+def wait():
+
+    recvv = await ws.recv()
+    return recvv
 print(recvv)
