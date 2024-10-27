@@ -26,14 +26,13 @@ def routegenerator(routes):
         pagefuncname = "page_" + routename
         @app.get(routename)
         def pagefuncname(iden=routename):
-            return {"info":f"{iden}."}
+          return fileresponse(f"src/{iden}.html")
 
 def starter():
     routes = fetchsrc_files()
     routegenerator(routes)
     print("generated routes..")
     print(f"indexed {routes} routes. routes read are {app.routes}")
-
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
