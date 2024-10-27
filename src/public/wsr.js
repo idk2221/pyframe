@@ -17,12 +17,7 @@ const fingerprint = async () => {
         navigator.vendor
     ]
     // audio fingerprinting
-    const audio = new (window.audio || window.webkitaudio)()
-    const oscillator = audio.createOscillator()
-    const analyser = audio.createAnalyser()
-    oscillator.connect(analyser)
-    const data = new Float32Array(analyser.frequencyBinCount)
-    analyser.getFloatTimeDomainData(data)
+    let data = "audio didnt workout."
     extras.push(data.slice(0,5).join(''))
     
     const str = extras.join('§')
