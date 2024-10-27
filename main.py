@@ -25,8 +25,10 @@ def routegenerator(routes):
         def pagefuncname():
             return {"indexed."}
 
-
-
+def starter():
+    routes = fetchsrc_files()
+    print(f"Indexed {routes} routes.")
+   
 # runner
 routes = fetchsrc_files()
 routegenerator(routes)
