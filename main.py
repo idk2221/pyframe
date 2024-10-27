@@ -35,7 +35,7 @@ def starter():
     routegenerator(routes)
     print("generated routes..")
     print(f"indexed {routes} routes. routes read are {app.routes}")
-    app.mount("/public", StaticFiles(directory="public",html = True), name="public")
+    app.mount("/src/public", StaticFiles(directory="public",html = True), name="public")
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
