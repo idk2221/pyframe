@@ -5,8 +5,19 @@ from starlette.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from backend import *
 import jedi
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import WebSocket
 
 app = fastapi.FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 def fetchsrc_files():
     # todo(): [fetch the file names from the src dir ]
     # this returns a list . [os.listdir("")]
@@ -88,5 +99,25 @@ def functionsFetcher():
     else:
         raise Exception("missing permissions, or unexsistance of backend.py")
 
+
+async def websocketsCreator(functionslist, sessionid):
+    for funcname in functionslist:
+        @app.websocket(f"/ws/{sessionid}/functions/{funcname}")
+        async def websocketendpoint(websocket: WebSocket, funcname=funcname):
+            await websocket.accept()
+            while True:
+                try:
+                    data = await websocket.receive_text()
+                    response = globals()[funcname]()
+                    await websocket.send_text(str(response))
+                except Exception as e:
+                    await websocket.send_text(str(e))
+                    await websocket.close()
+                    break
+
+@app.get("/reciever/{sessionid}")
+async def reciever(sessionid: str):
+    await websocketsCreator(functionsFetcher(), sessionid)
+    return {"status": "websockets created"}
 
 starter()
