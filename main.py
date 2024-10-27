@@ -24,7 +24,7 @@ def routegenerator(routes):
         pagefuncname = "page_" + routename
         @app.get(routename)
         def pagefuncname(iden=routename):
-            return {"indexed."}
+            return {"{iden}."}
 
 def starter():
     routes = fetchsrc_files()
