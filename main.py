@@ -13,6 +13,8 @@ def fetchsrc_files():
              routename = i.replace(".html", "") # routename - extention.
              if routename == "index":  #index to /
                  routename = "/"
+             else:
+                 routename = "/" + routename
              routes.append(routename)
     return routes
 
