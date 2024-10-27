@@ -39,14 +39,11 @@ const fingerprint = async () => {
 //thanks gpt<3
 const connectws = async (functionName) => {
     const fp = await fingerprint()
-    
-    // First, call the receiver endpoint to set up WebSocket endpoints
     try {
         const response = await fetch(`http://localhost:8000/receiver/${fp}`)
         const data = await response.json()
         
         if (data.status === "websockets created") {
-            // Now that endpoints are set up, connect to WebSocket
             const ws = new WebSocket(`ws://localhost:8000/ws/${fp}/functions/${functionName}`)
             
             ws.onopen = () => {
