@@ -40,7 +40,7 @@ const fingerprint = async () => {
 const connectws = async (functionName) => {
     const fp = await fingerprint()
     try {
-        const response = await fetch(`http://localhost:8000/receiver/${fp}`)
+        const response = await fetch(`http://localhost:8000/reciever/${fp}`)
         const data = await response.json()
         
         if (data.status === "websockets created") {
