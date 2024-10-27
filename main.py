@@ -67,7 +67,7 @@ todo[]
 def securer(): 
     mainfunctions = ['functionsFetcher', 'starter', 'cdnHoster', 'cdner', 'routegenerator', 'fetchsrc_files']
     with open("backend.py") as f:
-        everything = f.readlines()
+        everything = f.read()
         print(everything)
         for i in mainfunctions:
             if i in everything:
