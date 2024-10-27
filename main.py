@@ -81,7 +81,7 @@ def functionsFetcher():
     # todo? a lexer? i think is the best way.
     with open("backend.py") as f:
         everything = f.read()
-        lexed = jedi.Script(everything).get_names(all_scopes=True, all_types=True, definitions=True)
+        lexed = jedi.Script(everything).get_names(all_scopes=True, definitions=True)
         print(lexed)
     pass
 starter()
