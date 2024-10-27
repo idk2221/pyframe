@@ -7,17 +7,17 @@
             background: radial-gradient(rgba(10, 10, 30, 1), rgba(0, 0, 0, 1));
         }
         .container {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .container:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.05);
         }
         .pyframe {
             filter: contrast(5);
@@ -26,14 +26,14 @@
 </html>
 <body class="justify-center items-center flex min-h-screen">
 
-    <div class="container w-[28rem] h-[12rem] justify-center items-center flex flex-col p-8">
+    <div class="container w-[24rem] h-[10rem] justify-center items-center flex flex-col p-6">
         <div class="pyframe">
-            <img src="./public/logo.png" alt="logo" class="w-[3.5rem] h-[3.5rem]">
+            <img src="./public/logo.png" alt="logo" class="w-[2.8rem] h-[2.8rem]">
         </div>
-        <div class="mt-6 text-white text-lg font-medium tracking-wide">
+        <div class="mt-4 text-white text-lg font-medium tracking-wide">
             Your Server is up and running.
         </div>
-        <div class="mt-2 text-gray-400 text-sm text-center max-w-[80%]">
+        <div class="mt-2 text-gray-400 text-sm text-center max-w-[90%]">
             Edit HTML files in /src directory • Add assets to /public for CDN • 
             Live reload enabled
         </div>
