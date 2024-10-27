@@ -68,7 +68,7 @@ def securer():
     mainfunctions = ['functionsFetcher', 'starter', 'cdnHoster', 'cdner', 'routegenerator', 'fetchsrc_files']
     with open("backend.py") as f:
         everything = f.readlines()
-
+        print(everything)
         if mainfunctions in everything:
             raise Exception(f"Calling of illegal main functions. \n Please refrain from using one of these in your backend.py file. {mainfunctions}")
 def functionsFetcher():
