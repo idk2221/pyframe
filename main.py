@@ -83,7 +83,6 @@ def functionsFetcher():
         everything = f.read()
         lexed = jedi.Script(everything).get_names(all_scopes=True, definitions=True)
         #lexed -> [<Name full_name='__main__.logger', description='def logger'>, <Name full_name='__main__.logger.loglist', description='loglist = []'>]
-        test = [f.name for f in lexed if f.type == 'function'] 
-        print(test)
-    pass
+        functionslist = [f.name for f in lexed if f.type == 'function'] 
+        return functionslist
 starter()
