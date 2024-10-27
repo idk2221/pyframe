@@ -54,4 +54,14 @@ def starter():
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
+#bridge point
+
+"""
+todo[] 
+
+ - fetch function names from backend.py
+ - create a websocket with each function name /ws/{sessionid}/functions/{funcname}/{expectedresponse_address}
+ - call the function, get the response, and send it to the client with the sessionid and expectedresponse_address.
+"""
+
 starter()
