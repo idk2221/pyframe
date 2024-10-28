@@ -103,6 +103,7 @@ def apirouter():
     for i in allapiroutes:
         @app.get("/api/{i}") 
         def apifunc(iden={i}):
+            print("creating {i}")
             # todo() running the function for the bridge.
             # functionrunner.  [created]
             response = functionrunner(iden)
