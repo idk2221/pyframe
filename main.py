@@ -101,7 +101,6 @@ def functionrunner(function: str):
 def apirouter():
     allapiroutes = functionsFetcher()
     for i in allapiroutes:
-        print(i)
 
         @app.get("/api/{i}") 
         def apifunc(iden={i}):
