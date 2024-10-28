@@ -106,8 +106,9 @@
         // expected output of logger function : {"API":["$- Welcome, This is just comming from python.","$- Yeah, this framework is about jst bridging python with web.","$- We are super inspired by EEL.","$- this is just the beginning. <3"]}
         async function logger(){
             loggedresponse = await fetch("/api/logger")
-            loggedresponsevalue = await document.getElementById("scrllwheel")
-            console.log(loggedresponsevalue)
+            loggedresponsevalue = await loggedresponse.json()
+            loggedplace = await document.getElementById("scrllwheel")
+            console.log(loggedplace)
 
             loggedplace = getElementByID("scrllwheel")
             for (let i = 0; i < loggedresponsevalue.API.length; i++) {
