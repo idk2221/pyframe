@@ -94,6 +94,7 @@ def functionsFetcher():
 
 def functionrunner(function):
      function = str(function)
+     print(function)
      running = globals()[function]()
      
      return running
