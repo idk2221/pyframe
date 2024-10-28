@@ -39,6 +39,9 @@ def routegenerator(routes):
         routename = i
         print(routename)
         pagefuncname = "page_" + routename
+        #well - 
+        if routename == "/":
+            routename = "index"
         @app.get(routename)
         def pagefuncname(iden=routename):
           return FileResponse(f"src/{iden}.html")
