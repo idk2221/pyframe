@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from backend import *
 import jedi
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import WebSocket
+from fastapi import WebSocketx
 
 app = fastapi.FastAPI()
 
@@ -93,9 +93,9 @@ def functionsFetcher():
         raise Exception(f"missing permissions, or unexsistance of backend.py. {e}")
 
 def functionrunner(function):
-     functionlist = list(function)
-     print(functionlist)
-     running = globals()[functionlist[0]]()
+     functionlist = list(function) #{} - > []
+     print(functionlist) # debug
+     running = globals()[functionlist[0]]() #1nth element
     #  pass
      return running
 
