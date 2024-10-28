@@ -101,10 +101,11 @@ def functionrunner(function: str):
 def apirouter():
     allapiroutes = functionsFetcher()
     for i in allapiroutes:
-
+       print("creating {i}")
+        
         @app.get("/api/{i}") 
         def apifunc(iden={i}):
-            print("creating {i}")
+            #route scope.
             # todo() running the function for the bridge.
             # functionrunner.  [created]
             response = functionrunner(iden)
