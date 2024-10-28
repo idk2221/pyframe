@@ -95,7 +95,6 @@ def functionsFetcher():
 def functionrunner(function: str):
      print(globals())
      
-     return value
 
 
 def apirouter():
