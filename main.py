@@ -103,7 +103,7 @@ def starter():
     cdnHoster(cdnroutes)
     securer()
 
-    functionsFetcher()
+    print(functionsFetcher())
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
