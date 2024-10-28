@@ -92,19 +92,37 @@ def functionsFetcher():
     except Exception as e:
         raise Exception(f"missing permissions, or unexsistance of backend.py. {e}")
 
+def functionrunner(function: str)
+     value = globals()[function]()#imported from backend.py
+     print(value)
+     return value
+
+
+def apirouter():
+    allapiroutes = functionsFetcher()
+    for i in allapiroutes:
+        @app.get("/api/{i}") 
+        def apifunc(iden={i}):
+            # todo() running the function for the bridge.
+            # functionrunner.  [created]
+            response = functionrunner(iden)
+            return {"API": response}
+
+
+
 def starter():
     routes = fetchsrc_files()
     routegenerator(routes)
     print("generated routes..")
     print(f"indexed {routes} routes. routes read are {app.routes}")
     print("hosting cdn...")
-
     cdnroutes = cdner()
     cdnHoster(cdnroutes)
     securer()
-
-    print(functionsFetcher())
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+
+
 
 
 starter()
