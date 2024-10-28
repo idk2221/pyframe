@@ -43,7 +43,7 @@ def routegenerator(routes):
         
         @app.get(routename)
         def pagefuncname(iden=routename):
-             if iden == "/":
+            if iden == "/":
                 iden = "index"
             return FileResponse(f"src/{iden}.html")
 
