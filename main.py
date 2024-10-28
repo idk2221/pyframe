@@ -93,9 +93,7 @@ def functionsFetcher():
         raise Exception(f"missing permissions, or unexsistance of backend.py. {e}")
 
 def functionrunner(function):
-     function = str(function)
-     listedfunc = list(function)
-     print(listedfunc)
+     functionlist = list(function)
     #  running = globals()[function]()
      pass
     #  return running
