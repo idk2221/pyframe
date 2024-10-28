@@ -93,7 +93,7 @@ def functionsFetcher():
         raise Exception(f"missing permissions, or unexsistance of backend.py. {e}")
 
 def functionrunner(function: str):
-     print(globals())
+     running = globals()[function]()
      
      pass
 
