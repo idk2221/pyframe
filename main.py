@@ -8,7 +8,7 @@ import jedi
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import WebSocket
 
-app = fastapi.FastAPI()s
+app = fastapi.FastAPI()
 
 app.add_middleware(
     CORSMiddleware,

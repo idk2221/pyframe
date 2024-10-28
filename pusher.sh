@@ -5,7 +5,7 @@ f() {
   m="bot at $(date '+%Y-%m-%d %H:%M:%S')"
   git add .
   git commit -m "$m"
-  git git push origin main --force
+  git git push origin main 
 }
 if [ -f "$l" ]; then
   t=$(stat -f %m "$l")
