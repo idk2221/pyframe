@@ -94,9 +94,10 @@ def functionsFetcher():
 
 def functionrunner(function):
      functionlist = list(function)
-    #  running = globals()[function]()
-     pass
-    #  return running
+     print(functionlist)
+     running = globals()[functionlist[0]]()
+    #  pass
+     return running
 
 def apirouter():
     allapiroutes = functionsFetcher()
