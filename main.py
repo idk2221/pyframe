@@ -119,6 +119,7 @@ def starter():
     cdnroutes = cdner()
     cdnHoster(cdnroutes)
     securer()
+    apirouter()
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
