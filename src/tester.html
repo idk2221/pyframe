@@ -94,7 +94,8 @@
         </div>
         
         <div class="livterminal w-[32rem] p-4">
-            <div class="text-gray-400 text-sm font-mono mb-2">$- Logs here:</div>
+            <div class="text-gray-400 text-sm font-mono mb-2">$- Logs here:</div>            <div class="text-gray-900 text-sm font-mono mb-2">From (PYTHON function.!)</div>
+
             <div class="scrllwheel h-[4.5rem] overflow-y-auto text-gray-500 text-sm font-mono" id="scrllwheel">
                 
 
@@ -109,7 +110,8 @@
             loggedresponsevalue = await loggedresponse.json()
             loggedplace = await document.getElementById("scrllwheel")
             for (let i = 0; i < loggedresponsevalue.API.length; i++) {
-                eachapi = document.innerHTML(loggedresponsevalue.API[i]+"<br>")
+                eachapi = document.createElement("div")
+                eachapi.innerHTML = loggedresponsevalue.API[i]+"<br>"
                 loggedplace.appendChild(eachapi)
             }   
         }
