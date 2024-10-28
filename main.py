@@ -92,7 +92,7 @@ def functionsFetcher():
     except Exception as e:
         raise Exception(f"missing permissions, or unexsistance of backend.py. {e}")
 
-def functionrunner(function: str)
+def functionrunner(function: str):
      value = globals()[function]()#imported from backend.py
      print(value)
      return value
