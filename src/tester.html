@@ -109,7 +109,7 @@
             loggedresponsevalue = await loggedresponse.json()
             loggedplace = await document.getElementById("scrllwheel")
             for (let i = 0; i < loggedresponsevalue.API.length; i++) {
-                eachapi = document.createTextNode(loggedresponsevalue.API[i]+"<br>")
+                eachapi = document.innerHTML(loggedresponsevalue.API[i]+"<br>")
                 loggedplace.appendChild(eachapi)
             }   
         }
