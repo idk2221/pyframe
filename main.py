@@ -6,9 +6,9 @@ from fastapi.staticfiles import StaticFiles
 from backend import *
 import jedi
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import WebSocketx
+from fastapi import WebSocket
 
-app = fastapi.FastAPI()
+app = fastapi.FastAPI()s
 
 app.add_middleware(
     CORSMiddleware,
