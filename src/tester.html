@@ -105,7 +105,8 @@
         //showcasing bridge.
         // expected output of logger function : {"API":["$- Welcome, This is just comming from python.","$- Yeah, this framework is about jst bridging python with web.","$- We are super inspired by EEL.","$- this is just the beginning. <3"]}
         loggedresponse = fetch("/api/logger")
-        console.log(loggedresponse)
+        loggedresponsevalue = await loggedresponse.json()
+        console.log(loggedresponsevalue)
 
 
     </script>
