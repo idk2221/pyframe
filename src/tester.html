@@ -108,9 +108,6 @@
             loggedresponse = await fetch("/api/logger")
             loggedresponsevalue = await loggedresponse.json()
             loggedplace = await document.getElementById("scrllwheel")
-            console.log(loggedplace)
-
-            loggedplace = getElementByID("scrllwheel")
             for (let i = 0; i < loggedresponsevalue.API.length; i++) {
                 loggedplace.innerHTML += loggedresponsevalue.API[i] + "<br>"
             }   
