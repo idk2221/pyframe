@@ -87,41 +87,7 @@ def functionsFetcher():
         return functionslist
     except Exception as e:
         raise Exception(f"missing permissions, or unexsistance of backend.py. {e}")
-@app.websocket("/ws/")
-async def test(websocket: WebSocket):
-    await websocket.accept()
-    await websocket.send_text("test")
 
-async def websocketsCreator(functionslist, sessionid):
-    for funcname in functionslist:
-        @app.websocket(f"/ws/{sessionid}/functions/{funcname}")
-        async def websocketendpoint(websocket: WebSocket, funcname=funcname):
-            await websocket.accept()
-            while True:
-                try:
-                    data = await websocket.receive_text()
-                    if funcname in globals():
-                        response = globals()[funcname]()
-                        await websocket.send_text(str(response))
-                    else:
-                        await websocket.send_text(f"failure function is not found... {funcname}")
-                        await websocket.close()
-                        break
-                except Exception as e:
-                    await websocket.send_text(f"{str(e)}")
-                    await websocket.close()
-                    break
-
-@app.get("/reciever/{sessionid}")
-async def reciever(sessionid: str):
-    functionslist = functionsFetcher()
-    websocketsCreator(functionslist, sessionid)
-    return {"status": "websockets created", "functions": functionslist}
-def websocketprinter():
-    rx = [r for r in app.routes if r.endpoint.__name__.startswith("websocket_")]
-    print("websocket routes:")
-    for r in rx:
-        print(f"{r.path}")
 def starter():
     routes = fetchsrc_files()
     routegenerator(routes)
@@ -132,7 +98,6 @@ def starter():
     cdnroutes = cdner()
     cdnHoster(cdnroutes)
     securer()
-    websocketprinter()
 
     functionsFetcher()
     uvicorn.run(app, host="0.0.0.0", port=8000)
