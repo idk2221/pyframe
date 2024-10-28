@@ -40,11 +40,12 @@ def routegenerator(routes):
         print(routename)
         pagefuncname = "page_" + routename
         #well - 
-        if routename == "/":
-            routename = "index"
+        
         @app.get(routename)
         def pagefuncname(iden=routename):
-          return FileResponse(f"src/{iden}.html")
+             if iden == "/":
+                iden = "index"
+            return FileResponse(f"src/{iden}.html")
 
 def cdner():
     fileslist = os.listdir("src/public")
